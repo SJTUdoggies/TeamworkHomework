@@ -1,0 +1,197 @@
+#include "CM.h"
+
+date today, NO = {0, 0, 0};
+
+date trans1(string d) //日期转化为数字函数
+{
+    date time_1;
+    stringstream ss(d);
+    string temp;
+    vector<string> temparr;
+    while (getline(ss, temp, '.'))
+        temparr.push_back(temp);
+
+    time_1.year = stoi(temparr[0]);
+    time_1.month = stoi(temparr[1]);
+    time_1.day = stoi(temparr[2]);
+    return time_1;
+}
+
+string trans2(date a) //数字转为日期字符串函数
+{
+    string str1, str2, str3;
+    str1 = a.year;
+    str2 = a.month;
+    str3 = a.day;
+    str1 += ".";
+    str1 += str2;
+    str1 += ".";
+    str1 += str3;
+    return str1;
+}
+
+void modify(Dorm *head) //改变楼栋信息
+{
+    string m, n;
+    int j;
+    cout << "请输入要更改的楼名:（例如：27）" << endl;
+    cin >> m;
+    cout << "请输入要更改的区名:（例如：东区）" << endl;
+    cin >> n;
+    Dorm *p;
+    p = head;
+    while (p->information.name != m || p->information.district != n)
+    {
+        p = p->next;
+    }
+
+    cout << "请选择:" << endl
+         << "按下1: 开始封控" << endl
+         << "按下2：结束封控" << endl;
+    cin >> j;
+    switch (j)
+    {
+    case 1:
+        p->information.startdate = trans2(today);
+        p->information.enddate = datechange(p->information.startdate);
+        p->information.flag = true;
+        break;
+    case 2:
+        p->information.startdate = trans2(NO);
+        p->information.enddate = trans2(NO);
+        p->information.flag = false;
+        break;
+    }
+}
+
+void output(Dorm *head) //输出楼栋状态
+{
+    string m, n;
+    cout << "请输入要更改的楼名:（例如：27）" << endl;
+    cin >> m;
+    cout << "请输入要更改的区名:（例如：东区）" << endl;
+    cin >> n;
+    Dorm *p;
+    p = head;
+    while (p->information.name != m || p->information.district != n)
+    {
+        p = p->next;
+    }
+    if (p->information.startdate == trans2(NO))
+    {
+        cout << m << "未封控;  查询时间:" << trans2(today) << endl;
+    }
+    else
+    {
+        cout << m << "封控中;  开始时间:" << p->information.startdate << " 解封时间:" << p->information.enddate << "  查询时间:" << trans2(today) << endl;
+    }
+}
+
+void range(Dorm *head) //排序
+{
+    string min, max;
+    Dorm *p;
+    p = head;
+    min = p->information.enddate;
+    max = p->information.enddate;
+    while (p != NULL)
+    {
+        if (!comparedate(p->information.enddate, min))
+            min = p->information.enddate;
+        if (comparedate(p->information.enddate, max))
+            max = p->information.enddate;
+    }
+
+    string temp = min;
+    while (!comparedate(temp, max))
+    {
+        p = head;
+        while (p != NULL)
+        {
+            if (p->information.enddate == temp)
+            {
+                display(*p);
+            }
+            p = p->next;
+        }
+        datechange1(temp);
+    }
+}
+
+string datechange(string a) //封控增加5天函数
+{
+    date x = trans1(a);
+    int m[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (x.year % 4 == 0 && x.year % 100 != 0 || x.year % 400 == 0)
+        m[2] = 29;
+    x.day += 5;
+    if (x.day > m[x.month])
+    {
+        x.day -= m[x.month];
+        x.month++;
+        if (x.month > 12)
+        {
+            x.month = 1;
+            x.year++;
+        }
+    }
+    a = trans2(x);
+    return a;
+}
+
+string datechange1(string a) //日期增加1天函数
+{
+    date x = trans1(a);
+    int m[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (x.year % 4 == 0 && x.year % 100 != 0 || x.year % 400 == 0)
+        m[2] = 29;
+    x.day += 1;
+    if (x.day > m[x.month])
+    {
+        x.day -= m[x.month];
+        x.month++;
+        if (x.month > 12)
+        {
+            x.month = 1;
+            x.year++;
+        }
+    }
+    a = trans2(x);
+    return a;
+}
+
+bool comparedate(string a, string b) //日期比较函数
+{
+    date day1 = trans1(a);
+    date day2 = trans1(b);
+    if (day1.year < day2.year)
+        return false;
+    else if (day1.year > day2.year)
+        return true;
+    else
+    {
+        if (day1.month < day2.month)
+            return false;
+        if (day1.month > day2.month)
+            return true;
+        else
+        {
+            if (day1.day > day2.day)
+                return true;
+            else
+                return false;
+        }
+    }
+}
+
+void display(Dorm a) //楼栋信息输出
+{
+    cout << a.information.name << " " << a.information.district << " " << a.information.capacity << " " << a.information.chief << " " << a.information.startdate << " " << a.information.enddate;
+    if (a.information.flag)
+        cout << " "
+             << "Locked";
+    else
+        cout << " "
+             << "Unlock";
+    cout << endl;
+}
