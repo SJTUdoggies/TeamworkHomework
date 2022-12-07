@@ -1,6 +1,6 @@
 #include "CM.h"
 
-void inandout(Student *head)
+void inandout(Student *head) //å­¦ç”Ÿè¿›å‡ºå°å®¡æ‰¹å­æ¨¡å—
 {
     int r;
     Student *cnt = head->next;
@@ -8,16 +8,16 @@ void inandout(Student *head)
     {
         if (cnt->information.Apply.state == true)
         {
-            cout << "Ñ§Ôº£º" << cnt->information.school << "  ÐÕÃû£º" << cnt->information.name << "  Ñ§ºÅ£º" << cnt->information.id
-                 << "  ÉêÇëÐ£Çø£º" << cnt->information.Apply.campus << "  ÉêÇëÔ­Òò£º" << cnt->information.Apply.reason << "  ÉêÇëÀàÐÍ£º" << cnt->information.Apply.type;
+            cout << "å­¦é™¢ï¼š" << cnt->information.school << "  å§“åï¼š" << cnt->information.name << "  å­¦å·ï¼š" << cnt->information.id
+                 << "  ç”³è¯·æ ¡åŒºï¼š" << cnt->information.Apply.campus << "  ç”³è¯·åŽŸå› ï¼š" << cnt->information.Apply.reason << "  ç”³è¯·ç±»åž‹ï¼š" << cnt->information.Apply.type;
             if (cnt->information.Apply.type == "applyforin")
-                cout << "ÉêÇëÈëÐ£Ê±¼ä£º" << cnt->information.Apply.Indate << endl;
+                cout << "ç”³è¯·å…¥æ ¡æ—¶é—´ï¼š" << cnt->information.Apply.Indate << endl;
             else if (cnt->information.Apply.type == "applyforout")
-                cout << "ÉêÇë³öÐ£Ê±¼ä£º" << cnt->information.Apply.Outdate << endl;
+                cout << "ç”³è¯·å‡ºæ ¡æ—¶é—´ï¼š" << cnt->information.Apply.Outdate << endl;
             else if (cnt->information.Apply.type == "applyforinandout")
-                cout << "ÉêÇëÈëÐ£Ê±¼ä£º" << cnt->information.Apply.Indate << " "
-                     << "ÉêÇë³öÐ£Ê±¼ä£º" << cnt->information.Apply.Outdate << endl;
-            cout << "ÇëÄúÉóÅú£¨Í¨¹ýÇë°´ 1£»²»Í¨¹ýÇë°´ 2£©£º";
+                cout << "ç”³è¯·å…¥æ ¡æ—¶é—´ï¼š" << cnt->information.Apply.Indate << " "
+                     << "ç”³è¯·å‡ºæ ¡æ—¶é—´ï¼š" << cnt->information.Apply.Outdate << endl;
+            cout << "è¯·æ‚¨å®¡æ‰¹ï¼ˆé€šè¿‡è¯·æŒ‰ 1ï¼›ä¸é€šè¿‡è¯·æŒ‰ 2ï¼‰ï¼š";
             int n;
             bool flag = false;
             while (true)
@@ -34,7 +34,7 @@ void inandout(Student *head)
                     cnt->information.Apply.check = false;
                     break;
                 default:
-                    cout << "·Ç·¨ÊäÈë!ÇëÖØÐÂÊäÈë:";
+                    cout << "éžæ³•è¾“å…¥!è¯·é‡æ–°è¾“å…¥:";
                     break;
                 }
                 if (flag)
@@ -42,7 +42,7 @@ void inandout(Student *head)
             }
         }
         cnt = cnt->next;
-        cout << "¼ÌÐøÉóÅúÇë°´ 1£¬ÍË³öÇë°´ 0£º";
+        cout << "ç»§ç»­å®¡æ‰¹è¯·æŒ‰ 1ï¼Œé€€å‡ºè¯·æŒ‰ 0ï¼š";
         while (true)
         {
             cin >> r;
@@ -55,40 +55,40 @@ void inandout(Student *head)
             case 0:
                 return;
             default:
-                cout << "·Ç·¨ÊäÈë!ÇëÖØÐÂÊäÈë:";
+                cout << "éžæ³•è¾“å…¥!è¯·é‡æ–°è¾“å…¥:";
                 break;
             }
             if (flag1)
                 break;
         }
     }
-    cout << "ËùÓÐ´ýÉóÅúÏîÒÑÈ«²¿ÉóÔÄ" << endl;
+    cout << "æ‰€æœ‰å¾…å®¡æ‰¹é¡¹å·²å…¨éƒ¨å®¡é˜…" << endl;
 }
 
-void searchforper(Student *cnt)
+void searchforper(Student *cnt) //æŸ¥è¯¢å­¦ç”Ÿä¿¡æ¯
 {
-    cout << "Ñ§Ôº£º" << cnt->information.school << endl;
-    cout << "ÐÕÃû£º" << cnt->information.name << endlv;
-    cout << "Ñ§ºÅ£º" << cnt->information.id << endl;
-    cout << "µç»°£º" << cnt->information.telephone << endl;
-    cout << "ÇÞÊÒÂ¥¶°£º" << cnt->information.address << endl;
-    cout << "°à¼¶ºÅ£º" << cnt->information.classnum << endl;
-    cout << "ÌåÎÂ£º" << cnt->information.temperature << endl;
-    cout << "ÒßÃç×¢ÉäÇé¿ö£º" << cnt->information.vaccine << endl;
-    cout << "×î½üÒ»´ÎºËËá¼ì²âÈÕÆÚ£º" << cnt->information.PCR.date << endl;
-    cout << "×î½üÒ»´ÎºËËá¼ì²â½á¹û£º" << cnt->information.PCR.consequence << endl;
+    cout << "å­¦é™¢ï¼š" << cnt->information.school << endl;
+    cout << "å§“åï¼š" << cnt->information.name << endl;
+    cout << "å­¦å·ï¼š" << cnt->information.id << endl;
+    cout << "ç”µè¯ï¼š" << cnt->information.telephone << endl;
+    cout << "å¯å®¤æ¥¼æ ‹ï¼š" << cnt->information.address << endl;
+    cout << "ç­çº§å·ï¼š" << cnt->information.classnum << endl;
+    cout << "ä½“æ¸©ï¼š" << cnt->information.temperature << endl;
+    cout << "ç–«è‹—æ³¨å°„æƒ…å†µï¼š" << cnt->information.vaccine << endl;
+    cout << "æœ€è¿‘ä¸€æ¬¡æ ¸é…¸æ£€æµ‹æ—¥æœŸï¼š" << cnt->information.PCR.date << endl;
+    cout << "æœ€è¿‘ä¸€æ¬¡æ ¸é…¸æ£€æµ‹ç»“æžœï¼š" << cnt->information.PCR.consequence << endl;
 }
 
-void applyforinandout(Student *head)
+void applyforinandout(Student *head) //å­¦ç”Ÿè¿›å‡ºæ ¡ç”³è¯·
 {
     int n;
     bool flag = false;
     while (true)
     {
-        cout << "Ìá½»ÉêÇëÇë°´ 1" << endl;
-        cout << "É¾³ýÉêÇëÇë°´ 2" << endl;
-        cout << "ÐÞ¸ÄÉêÇëÇë°´ 3" << endl;
-        cout << "²éÑ¯ÉêÇëÇë°´ 4" << endl;
+        cout << "æäº¤ç”³è¯·è¯·æŒ‰ 1" << endl;
+        cout << "åˆ é™¤ç”³è¯·è¯·æŒ‰ 2" << endl;
+        cout << "ä¿®æ”¹ç”³è¯·è¯·æŒ‰ 3" << endl;
+        cout << "æŸ¥è¯¢ç”³è¯·è¯·æŒ‰ 4" << endl;
         cin >> n;
         switch (n)
         {
@@ -116,99 +116,99 @@ void applyforinandout(Student *head)
     }
 }
 
-void app(Student *head)
+void app(Student *head) //æäº¤ç”³è¯·
 {
     int r;
     head->information.Apply.state = true;
-    cout << "ÇëÊäÈëÉêÇëÐ£Çø£º";
+    cout << "è¯·è¾“å…¥ç”³è¯·æ ¡åŒºï¼š";
     cin >> head->information.Apply.campus;
-    cout << "ÉêÇëÈëÐ£Çë°´ 1£»" << endl;
-    cout << "ÉêÇë³öÐ£Çë°´ 2£»" << endl;
-    cout << "ÉêÇë½ø³öÐ£Çë°´ 3£»" << endl;
-    cout << "ÇëÊäÈë£º";
+    cout << "ç”³è¯·å…¥æ ¡è¯·æŒ‰ 1ï¼›" << endl;
+    cout << "ç”³è¯·å‡ºæ ¡è¯·æŒ‰ 2ï¼›" << endl;
+    cout << "ç”³è¯·è¿›å‡ºæ ¡è¯·æŒ‰ 3ï¼›" << endl;
+    cout << "è¯·è¾“å…¥ï¼š";
     cin >> r;
     switch (r)
     {
     case 1:
         head->information.Apply.type == "applyforin";
-        cout << "ÇëÊäÈëÉêÇëÈëÐ£Ê±¼ä£¨xxxx.xx.xx£©£º";
+        cout << "è¯·è¾“å…¥ç”³è¯·å…¥æ ¡æ—¶é—´ï¼ˆxxxx.xx.xxï¼‰ï¼š";
         cin >> head->information.Apply.Indate;
         break;
     case 2:
         head->information.Apply.type == "applyforout";
-        cout << "ÇëÊäÈëÉêÇë³öÐ£Ê±¼ä£¨xxxx.xx.xx£©£º";
+        cout << "è¯·è¾“å…¥ç”³è¯·å‡ºæ ¡æ—¶é—´ï¼ˆxxxx.xx.xxï¼‰ï¼š";
         cin >> head->information.Apply.Outdate;
         break;
     case 3:
         head->information.Apply.type == "applyforinandout";
-        cout << "ÇëÊäÈëÉêÇëÈëÐ£Ê±¼ä£¨xxxx.xx.xx£©£º";
+        cout << "è¯·è¾“å…¥ç”³è¯·å…¥æ ¡æ—¶é—´ï¼ˆxxxx.xx.xxï¼‰ï¼š";
         cin >> head->information.Apply.Indate;
-        cout << "ÇëÊäÈëÉêÇë³öÐ£Ê±¼ä£¨xxxx.xx.xx£©£º";
+        cout << "è¯·è¾“å…¥ç”³è¯·å‡ºæ ¡æ—¶é—´ï¼ˆxxxx.xx.xxï¼‰ï¼š";
         cin >> head->information.Apply.Outdate;
         break;
     }
-    cout << "ÇëÊäÈëÉêÇëÔ­Òò£º";
+    cout << "è¯·è¾“å…¥ç”³è¯·åŽŸå› ï¼š";
     cin >> head->information.Apply.reason;
 }
 
-void del(Student *head)
+void del(Student *head) //åˆ é™¤ç”³è¯·
 {
     head->information.Apply.state = false;
 }
 
-void change(Student *head)
+void change(Student *head) //æ›´æ”¹ç”³è¯·
 {
     int r;
     bool flag2 = false;
-    cout << "ÐÞ¸ÄÐ£ÇøÇë°´ 1" << endl;
-    cout << "ÐÞ¸Ä½ø³öÐ£ÀàÐÍ/Ê±¼äÇë°´ 2" << endl;
-    cout << "ÐÞ¸ÄÔ­ÒòÇë°´ 3" << endl;
-    cout << "ÇëÊäÈë£º";
+    cout << "ä¿®æ”¹æ ¡åŒºè¯·æŒ‰ 1" << endl;
+    cout << "ä¿®æ”¹è¿›å‡ºæ ¡ç±»åž‹/æ—¶é—´è¯·æŒ‰ 2" << endl;
+    cout << "ä¿®æ”¹åŽŸå› è¯·æŒ‰ 3" << endl;
+    cout << "è¯·è¾“å…¥ï¼š";
     while (true)
     {
         cin >> r;
         switch (r)
         {
         case 1:
-            cout << "ÇëÊäÈëÉêÇëÐ£Çø£º";
+            cout << "è¯·è¾“å…¥ç”³è¯·æ ¡åŒºï¼š";
             cin >> head->information.Apply.campus;
             flag2 = true;
             break;
         case 2:
-            cout << "ÉêÇëÈëÐ£Çë°´ 1£»" << endl;
-            cout << "ÉêÇë³öÐ£Çë°´ 2£»" << endl;
-            cout << "ÉêÇë½ø³öÐ£Çë°´ 3£»" << endl;
-            cout << "ÇëÊäÈë£º";
+            cout << "ç”³è¯·å…¥æ ¡è¯·æŒ‰ 1ï¼›" << endl;
+            cout << "ç”³è¯·å‡ºæ ¡è¯·æŒ‰ 2ï¼›" << endl;
+            cout << "ç”³è¯·è¿›å‡ºæ ¡è¯·æŒ‰ 3ï¼›" << endl;
+            cout << "è¯·è¾“å…¥ï¼š";
             cin >> r;
             switch (r)
             {
             case 1:
                 head->information.Apply.type == "applyforin";
-                cout << "ÇëÊäÈëÉêÇëÈëÐ£Ê±¼ä£¨xxxx.xx.xx£©£º";
+                cout << "è¯·è¾“å…¥ç”³è¯·å…¥æ ¡æ—¶é—´ï¼ˆxxxx.xx.xxï¼‰ï¼š";
                 cin >> head->information.Apply.Indate;
                 break;
             case 2:
                 head->information.Apply.type == "applyforout";
-                cout << "ÇëÊäÈëÉêÇë³öÐ£Ê±¼ä£¨xxxx.xx.xx£©£º";
+                cout << "è¯·è¾“å…¥ç”³è¯·å‡ºæ ¡æ—¶é—´ï¼ˆxxxx.xx.xxï¼‰ï¼š";
                 cin >> head->information.Apply.Outdate;
                 break;
             case 3:
                 head->information.Apply.type == "applyforinandout";
-                cout << "ÇëÊäÈëÉêÇëÈëÐ£Ê±¼ä£¨xxxx.xx.xx£©£º";
+                cout << "è¯·è¾“å…¥ç”³è¯·å…¥æ ¡æ—¶é—´ï¼ˆxxxx.xx.xxï¼‰ï¼š";
                 cin >> head->information.Apply.Indate;
-                cout << "ÇëÊäÈëÉêÇë³öÐ£Ê±¼ä£¨xxxx.xx.xx£©£º";
+                cout << "è¯·è¾“å…¥ç”³è¯·å‡ºæ ¡æ—¶é—´ï¼ˆxxxx.xx.xxï¼‰ï¼š";
                 cin >> head->information.Apply.Outdate;
                 break;
             }
             flag2 = true;
             break;
         case 3:
-            cout << "ÇëÊäÈëÉêÇëÔ­Òò£º";
+            cout << "è¯·è¾“å…¥ç”³è¯·åŽŸå› ï¼š";
             cin >> head->information.Apply.reason;
             flag2 = true;
             break;
         default:
-            cout << "·Ç·¨ÊäÈë£¡";
+            cout << "éžæ³•è¾“å…¥ï¼";
             break;
         }
         if (flag2)
@@ -216,20 +216,20 @@ void change(Student *head)
     }
 }
 
-void check(Student *cnt)
+void check(Student *cnt) //æŸ¥è¯¢ç”³è¯·
 {
-    cout << "Ñ§Ôº£º" << cnt->information.school << "  ÐÕÃû£º" << cnt->information.name << "  Ñ§ºÅ£º" << cnt->information.id
-         << "  ÉêÇëÐ£Çø£º" << cnt->information.Apply.campus << "  ÉêÇëÔ­Òò£º" << cnt->information.Apply.reason << "  ÉêÇëÀàÐÍ£º" << cnt->information.Apply.type;
+    cout << "å­¦é™¢ï¼š" << cnt->information.school << "  å§“åï¼š" << cnt->information.name << "  å­¦å·ï¼š" << cnt->information.id
+         << "  ç”³è¯·æ ¡åŒºï¼š" << cnt->information.Apply.campus << "  ç”³è¯·åŽŸå› ï¼š" << cnt->information.Apply.reason << "  ç”³è¯·ç±»åž‹ï¼š" << cnt->information.Apply.type;
     if (cnt->information.Apply.type == "applyforin")
-        cout << "ÉêÇëÈëÐ£Ê±¼ä£º" << cnt->information.Apply.Indate << endl;
+        cout << "ç”³è¯·å…¥æ ¡æ—¶é—´ï¼š" << cnt->information.Apply.Indate << endl;
     else if (cnt->information.Apply.type == "applyforout")
-        cout << "ÉêÇë³öÐ£Ê±¼ä£º" << cnt->information.Apply.Outdate << endl;
+        cout << "ç”³è¯·å‡ºæ ¡æ—¶é—´ï¼š" << cnt->information.Apply.Outdate << endl;
     else if (cnt->information.Apply.type == "applyforinandout")
-        cout << "ÉêÇëÈëÐ£Ê±¼ä£º" << cnt->information.Apply.Indate << " "
-             << "ÉêÇë³öÐ£Ê±¼ä£º" << cnt->information.Apply.Outdate << endl;
-    cout << "ÉóÅú×´Ì¬£º";
+        cout << "ç”³è¯·å…¥æ ¡æ—¶é—´ï¼š" << cnt->information.Apply.Indate << " "
+             << "ç”³è¯·å‡ºæ ¡æ—¶é—´ï¼š" << cnt->information.Apply.Outdate << endl;
+    cout << "å®¡æ‰¹çŠ¶æ€ï¼š";
     if (cnt->information.Apply.check)
-        cout << "ÒÑÍ¨¹ý";
+        cout << "å·²é€šè¿‡";
     else
-        cout << "Î´Í¨¹ý";
+        cout << "æœªé€šè¿‡";
 }
