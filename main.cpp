@@ -1,13 +1,15 @@
 #include "CM.h"
 
 extern const Student *headofstu;
+extern const Dorm *headofdorm;
 extern int NumofStudents;
-extern string timeNow;   //Ä¿Ç°Ê±¼ä
-extern int timeStampNow; //µ±Ç°µÄÊ±¼ä´Á
+extern string timeNow;   //ç›®å‰æ—¶é—´
+extern int timeStampNow; //å½“å‰çš„æ—¶é—´æˆ³
 int main()
 {
-    cout << "½ÌÊ¦µÇÂ¼Çë°´ 1£»Ñ§ÉúµÇÂ¼Çë°´ 2" << endl;
-    cout << "ÇëÊäÈë£º";
+    getTimeNow();
+    cout << "æ•™å¸ˆç™»å½•è¯·æŒ‰ 1ï¼›å­¦ç”Ÿç™»å½•è¯·æŒ‰ 2" << endl;
+    cout << "è¯·è¾“å…¥ï¼š";
     int r;
     cin >> r;
     if (r == 1)
@@ -19,7 +21,7 @@ int main()
             cin >> n;
             switch (n)
             {
-            case 1: //ĞÅÏ¢µ¼ÈëÄ£¿é
+            case 1: //ä¿¡æ¯å¯¼å…¥æ¨¡å—
             {
                 bool flag = false;
                 while (true)
@@ -50,7 +52,7 @@ int main()
                         flag = true;
                         break;
                     default:
-                        cout << "ÇëÇóÎŞĞ§£¬ÇëÖØĞÂÊäÈë£º";
+                        cout << "è¯·æ±‚æ— æ•ˆï¼Œè¯·é‡æ–°è¾“å…¥ï¼š";
                         break;
                     }
                     if (flag)
@@ -58,7 +60,7 @@ int main()
                 }
                 break;
             }
-            case 2: //ĞÅÏ¢ÉÏ±¨¹ÜÀíÄ£¿é
+            case 2: //ä¿¡æ¯ä¸ŠæŠ¥ç®¡ç†æ¨¡å—
             {
                 bool flag = false;
                 while (true)
@@ -91,7 +93,7 @@ int main()
                         flag = true;
                         break;
                     default:
-                        cout << "ÇëÇóÎŞĞ§£¬ÇëÖØĞÂÊäÈë£º";
+                        cout << "è¯·æ±‚æ— æ•ˆï¼Œè¯·é‡æ–°è¾“å…¥ï¼š";
                         break;
                     }
                     if (flag)
@@ -99,20 +101,45 @@ int main()
                 }
             }
             break;
-            case 3: //½ø³öĞ£ÃÅ¹ÜÀíÄ£¿é
-                cout << "¼´½«ÎªÄúÏÔÊ¾ÒÑÌá½»ÉêÇëÑ§ÉúµÄĞÅÏ¢£º" << endl;
+            case 3: //è¿›å‡ºæ ¡é—¨ç®¡ç†æ¨¡å—
+                cout << "å³å°†ä¸ºæ‚¨æ˜¾ç¤ºå·²æäº¤ç”³è¯·å­¦ç”Ÿçš„ä¿¡æ¯ï¼š" << endl;
                 inandout((Student *)headofstu);
                 break;
-            case 4: //
-                /* code */
-                break;
-            case 5: //Ê±¼äÉèÖÃÄ£¿é
-                setTimeNow();
-                cout << "µ±Ç°Ê±¼ä´Á£¨µ¥Î»£ºĞ¡Ê±£©Îª£º" << timeStampNow << endl
-                     << "µ±Ç°Ê±¼äÎª£º" << timeNow << endl;
-                break;
+            case 4: //å­¦æ ¡å®¿èˆæ¥¼ç®¡ç†
+            {
+                bool flag = false;
+                while (true)
+                {
+                    helpofdormmodify();
+                    cin >> n;
+                    switch (n)
+                    {
+                    case 1:
+                        modify((Dorm *)headofdorm);
+                        clean();
+                        break; //è¾“å…¥ä¸º1ï¼šä¿®æ”¹æ¥¼æ ‹å°æ§çŠ¶æ€ã€ç»“æŸæ—¶é—´
+                    case 2:
+                        output((Dorm *)headofdorm);
+                        clean();
+                        break; //è¾“å…¥ä¸º2ï¼šæŸ¥è¯¢æ¥¼æ ‹çŠ¶æ€
+                    case 3:
+                        range((Dorm *)headofdorm);
+                        clean();
+                        break; //è¾“å…¥ä¸º3ï¼šæ ¹æ®è§£å°å…ˆåæ’åº
+                    case 4:
+                        flag = true;
+                        break;
+                    default:
+                        cout << "è¯·æ±‚æ— æ•ˆï¼Œè¯·é‡æ–°è¾“å…¥ï¼š";
+                        break;
+                    }
+                    if (flag)
+                        break;
+                }
+            }
+            break;
             default:
-                cout << "ÇëÖØĞÂÊäÈë£¡";
+                cout << "è¯·é‡æ–°è¾“å…¥ï¼";
                 break;
             }
         }
@@ -122,9 +149,9 @@ int main()
         string s;
         while (true)
         {
-            cout << "ÇëÊäÈëÑ§ºÅ£º";
+            cout << "è¯·è¾“å…¥å­¦å·ï¼š";
             cin >> s;
-            bool flag = false; //Æ¥ÅäÑ§ºÅ
+            bool flag = false; //åŒ¹é…å­¦å·
             Student *pp = (Student *)headofstu;
             for (int i = 0; i < NumofStudents; ++i)
             {
@@ -138,7 +165,7 @@ int main()
                     break;
                 }
             }
-            if (flag) //Èç¹ûÕÒµ½¸ÃÑ§ºÅÑ§Éú
+            if (flag) //å¦‚æœæ‰¾åˆ°è¯¥å­¦å·å­¦ç”Ÿ
             {
                 while (true)
                 {
@@ -148,18 +175,18 @@ int main()
                     cin >> n;
                     switch (n)
                     {
-                    case 1: //Ñ§Éú¸öÈËĞÅÏ¢²éÑ¯Ä£¿é
+                    case 1: //å­¦ç”Ÿä¸ªäººä¿¡æ¯æŸ¥è¯¢æ¨¡å—
                         clean();
                         searchforper(pp);
                         flag1 = true;
                         break;
                     case 2:
                         clean();
-                        applyforinandout(pp); //Ñ§Éú½ø³öĞ¡ÉêÇëÄ£¿é
+                        applyforinandout(pp); //å­¦ç”Ÿè¿›å‡ºå°ç”³è¯·æ¨¡å—
                         flag1 = true;
                         break;
                     default:
-                        cout << "ÇëÖØĞÂÊäÈë£¡";
+                        cout << "è¯·é‡æ–°è¾“å…¥ï¼";
                         break;
                     }
                     if (flag1)
@@ -168,7 +195,7 @@ int main()
             }
             else
             {
-                cout << "²éÎŞ´ËÈË£¬ÇëÖØĞÂÊäÈë£¡" << endl;
+                cout << "æŸ¥æ— æ­¤äººï¼Œè¯·é‡æ–°è¾“å…¥ï¼" << endl;
             }
         }
     }
