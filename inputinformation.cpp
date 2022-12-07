@@ -1,87 +1,87 @@
 #include "CM.h"
 
-//Â¼ÈëÑ§ÉúÈËÊı
+//å½•å…¥å­¦ç”Ÿäººæ•°
 extern int NumofStudents = 0;
-//Ñ§ÉúÍ·½áµãºÍÖ¸Õë
+//å­¦ç”Ÿå¤´ç»“ç‚¹å’ŒæŒ‡é’ˆ
 extern Student *pofstu{};
 extern Student *rearofstu = new Student;
 extern const Student *headofstu = rearofstu;
 
-//Â¼ÈëËŞÉáÂ¥Êı
+//å½•å…¥å®¿èˆæ¥¼æ•°
 extern int NumofDorms = 0;
-//ËŞÉáÍ·½áµãºÍÖ¸Õë
+//å®¿èˆå¤´ç»“ç‚¹å’ŒæŒ‡é’ˆ
 extern Dorm *pofdorm{};
 extern Dorm *rearofdorm = new Dorm;
 extern const Dorm *headofdorm = rearofdorm;
 
-//Â¼ÈëÑ§ÉúĞÅÏ¢
+//å½•å…¥å­¦ç”Ÿä¿¡æ¯
 void inputinformation()
 {
     string s;
     getline(cin, s);
-    vector<string> splitSemicolon = Util::split(s, "£»"); // ÒÔÖĞÎÄ·ÖºÅÎª·Ö¸ô·û½øĞĞ¶Ô×Ö·û´®½øĞĞ·Ö¸î
-    NumofStudents += splitSemicolon.size();               //Ôö¼ÓÂ¼ÈëÑ§ÉúÈËÊı
+    vector<string> splitSemicolon = Util::split(s, "ï¼›"); // ä»¥ä¸­æ–‡åˆ†å·ä¸ºåˆ†éš”ç¬¦è¿›è¡Œå¯¹å­—ç¬¦ä¸²è¿›è¡Œåˆ†å‰²
+    NumofStudents += splitSemicolon.size();               //å¢åŠ å½•å…¥å­¦ç”Ÿäººæ•°
     for (int i = 0; i < splitSemicolon.size(); ++i)
     {
         pofstu = new Student;
         rearofstu->next = pofstu;
         rearofstu = pofstu;
-        // ÒÔÖĞÎÄ¶ººÅÎª·Ö¸ô·û¶Ô×Ö·û´®½øĞĞ·Ö¸î
-        vector<string> splitComma = Util::split(splitSemicolon[i], "£¬");
+        // ä»¥ä¸­æ–‡é€—å·ä¸ºåˆ†éš”ç¬¦å¯¹å­—ç¬¦ä¸²è¿›è¡Œåˆ†å‰²
+        vector<string> splitComma = Util::split(splitSemicolon[i], "ï¼Œ");
         for (int j = 0; j < splitComma.size(); ++j)
         {
-            // ÒÔÖĞÎÄÃ°ºÅÎª·Ö¸ô·û¶Ô×Ö·û´®½øĞĞ·Ö¸î
-            vector<string> splitColon = Util::split(splitComma[j], "£º");
-            if (splitColon[0] == "ĞÕÃû")
+            // ä»¥ä¸­æ–‡å†’å·ä¸ºåˆ†éš”ç¬¦å¯¹å­—ç¬¦ä¸²è¿›è¡Œåˆ†å‰²
+            vector<string> splitColon = Util::split(splitComma[j], "ï¼š");
+            if (splitColon[0] == "å§“å")
             {
                 pofstu->information.name = splitColon[1];
             }
-            else if (splitColon[0] == "Ñ§ºÅ")
+            else if (splitColon[0] == "å­¦å·")
             {
                 pofstu->information.id = splitColon[1];
             }
-            else if (splitColon[0] == "µç»°")
+            else if (splitColon[0] == "ç”µè¯")
             {
                 pofstu->information.telephone = splitColon[1];
             }
-            else if (splitColon[0] == "Ñ§Ôº")
+            else if (splitColon[0] == "å­¦é™¢")
             {
                 pofstu->information.school = splitColon[1];
             }
-            else if (splitColon[0] == "ÇŞÊÒÂ¥¶°")
+            else if (splitColon[0] == "å¯å®¤æ¥¼æ ‹")
             {
                 pofstu->information.address = splitColon[1];
             }
-            else if (splitColon[0] == "°à¼¶")
+            else if (splitColon[0] == "ç­çº§")
             {
                 pofstu->information.classnum = splitColon[1];
             }
-            else if (splitColon[0] == "ÌåÎÂ")
+            else if (splitColon[0] == "ä½“æ¸©")
             {
                 pofstu->information.temperature = splitColon[1];
             }
         }
     }
-    cout << "num:" << NumofStudents;
+    cout << "å·²å½•å…¥å­¦ç”Ÿæ•°ï¼š" << NumofStudents;
 }
-//Â¼ÈëºËËáĞÅÏ¢
+//å½•å…¥æ ¸é…¸ä¿¡æ¯
 void inputPCR()
 {
     string s;
     getline(cin, s);
-    vector<string> splitSemicolon = Util::split(s, "£»"); // ÒÔÖĞÎÄ·ÖºÅÎª·Ö¸ô·û½øĞĞ¶Ô×Ö·û´®½øĞĞ·Ö¸î
+    vector<string> splitSemicolon = Util::split(s, "ï¼›"); // ä»¥ä¸­æ–‡åˆ†å·ä¸ºåˆ†éš”ç¬¦è¿›è¡Œå¯¹å­—ç¬¦ä¸²è¿›è¡Œåˆ†å‰²
     for (int i = 0; i < splitSemicolon.size(); ++i)
     {
-        // ÒÔÖĞÎÄ¶ººÅÎª·Ö¸ô·û¶Ô×Ö·û´®½øĞĞ·Ö¸î
-        vector<string> splitComma = Util::split(splitSemicolon[i], "£¬");
-        //ÕÒµ½Ñ§ÉúÑ§ºÅ²¢´æ´¢
+        // ä»¥ä¸­æ–‡é€—å·ä¸ºåˆ†éš”ç¬¦å¯¹å­—ç¬¦ä¸²è¿›è¡Œåˆ†å‰²
+        vector<string> splitComma = Util::split(splitSemicolon[i], "ï¼Œ");
+        //æ‰¾åˆ°å­¦ç”Ÿå­¦å·å¹¶å­˜å‚¨
         string idforpcr;
         for (int j = 0; j < splitComma.size(); ++j)
         {
             bool flag1 = false;
-            // ÒÔÖĞÎÄÃ°ºÅÎª·Ö¸ô·û¶Ô×Ö·û´®½øĞĞ·Ö¸î
-            vector<string> splitColon = Util::split(splitComma[j], "£º");
-            if (splitColon[0] == "Ñ§ºÅ")
+            // ä»¥ä¸­æ–‡å†’å·ä¸ºåˆ†éš”ç¬¦å¯¹å­—ç¬¦ä¸²è¿›è¡Œåˆ†å‰²
+            vector<string> splitColon = Util::split(splitComma[j], "ï¼š");
+            if (splitColon[0] == "å­¦å·")
             {
                 idforpcr = splitColon[1];
                 flag1 = true;
@@ -89,7 +89,7 @@ void inputPCR()
             if (flag1)
                 break;
         }
-        //½«¸ÃÑ§ºÅÓëÊı¾İ¿âÖĞĞÅÏ¢½øĞĞ±È¶Ô
+        //å°†è¯¥å­¦å·ä¸æ•°æ®åº“ä¸­ä¿¡æ¯è¿›è¡Œæ¯”å¯¹
         bool flag2 = false;
         Student *p1 = (Student *)headofstu;
         for (int i = 0; i < NumofStudents; ++i)
@@ -104,60 +104,60 @@ void inputPCR()
                 break;
             }
         }
-        if (flag2) //Èç¹ûÕÒµ½¸ÃÑ§ºÅÑ§Éú
+        if (flag2) //å¦‚æœæ‰¾åˆ°è¯¥å­¦å·å­¦ç”Ÿ
         {
             for (int j = 0; j < splitComma.size(); ++j)
             {
-                // ÒÔÖĞÎÄÃ°ºÅÎª·Ö¸ô·û¶Ô×Ö·û´®½øĞĞ·Ö¸î
-                vector<string> splitColon = Util::split(splitComma[j], "£º");
-                if (splitColon[0] == "ÈÕÆÚ")
+                // ä»¥ä¸­æ–‡å†’å·ä¸ºåˆ†éš”ç¬¦å¯¹å­—ç¬¦ä¸²è¿›è¡Œåˆ†å‰²
+                vector<string> splitColon = Util::split(splitComma[j], "ï¼š");
+                if (splitColon[0] == "æ—¥æœŸ")
                 {
                     p1->information.PCR.date = splitColon[1];
                     p1->information.PCR.timeStamp = setTimePCR(p1->information.PCR.date);
                 }
-                else if (splitColon[0] == "½á¹û")
+                else if (splitColon[0] == "ç»“æœ")
                 {
                     p1->information.PCR.consequence = splitColon[1];
                 }
             }
         }
-        else //Èç¹ûÎ´ÕÒµ½¸ÃÑ§ºÅÑ§Éú
+        else //å¦‚æœæœªæ‰¾åˆ°è¯¥å­¦å·å­¦ç”Ÿ
         {
-            cout << "Ã»ÓĞÔÚÊı¾İ¿âÖĞÕÒµ½Ñ§ºÅÎª£º" << idforpcr << "µÄÑ§Éú" << endl;
+            cout << "æ²¡æœ‰åœ¨æ•°æ®åº“ä¸­æ‰¾åˆ°å­¦å·ä¸ºï¼š" << idforpcr << "çš„å­¦ç”Ÿ" << endl;
         }
     }
 }
-//Â¼ÈëÂ¥¶°ĞÅÏ¢
+//å½•å…¥æ¥¼æ ‹ä¿¡æ¯
 void inputinformationofdorm()
 {
     string s;
     getline(cin, s);
-    vector<string> splitSemicolon = Util::split(s, "£»"); // ÒÔÖĞÎÄ·ÖºÅÎª·Ö¸ô·û½øĞĞ¶Ô×Ö·û´®½øĞĞ·Ö¸î
-    NumofDorms += splitSemicolon.size();                  //Ôö¼ÓÂ¼ÈëËŞÉáÂ¥Êı
+    vector<string> splitSemicolon = Util::split(s, "ï¼›"); // ä»¥ä¸­æ–‡åˆ†å·ä¸ºåˆ†éš”ç¬¦è¿›è¡Œå¯¹å­—ç¬¦ä¸²è¿›è¡Œåˆ†å‰²
+    NumofDorms += splitSemicolon.size();                  //å¢åŠ å½•å…¥å®¿èˆæ¥¼æ•°
     for (int i = 0; i < splitSemicolon.size(); ++i)
     {
         pofdorm = new Dorm;
         rearofdorm->next = pofdorm;
         rearofdorm = pofdorm;
-        // ÒÔÖĞÎÄ¶ººÅÎª·Ö¸ô·û¶Ô×Ö·û´®½øĞĞ·Ö¸î
-        vector<string> splitComma = Util::split(splitSemicolon[i], "£¬");
+        // ä»¥ä¸­æ–‡é€—å·ä¸ºåˆ†éš”ç¬¦å¯¹å­—ç¬¦ä¸²è¿›è¡Œåˆ†å‰²
+        vector<string> splitComma = Util::split(splitSemicolon[i], "ï¼Œ");
         for (int j = 0; j < splitComma.size(); ++j)
         {
-            // ÒÔÖĞÎÄÃ°ºÅÎª·Ö¸ô·û¶Ô×Ö·û´®½øĞĞ·Ö¸î
-            vector<string> splitColon = Util::split(splitComma[j], "£º");
-            if (splitColon[0] == "Â¥Ãû")
+            // ä»¥ä¸­æ–‡å†’å·ä¸ºåˆ†éš”ç¬¦å¯¹å­—ç¬¦ä¸²è¿›è¡Œåˆ†å‰²
+            vector<string> splitColon = Util::split(splitComma[j], "ï¼š");
+            if (splitColon[0] == "æ¥¼å")
             {
                 pofdorm->information.name = splitColon[1];
             }
-            else if (splitColon[0] == "ÇøÃû")
+            else if (splitColon[0] == "åŒºå")
             {
                 pofdorm->information.district = splitColon[1];
             }
-            else if (splitColon[0] == "ÈİÁ¿")
+            else if (splitColon[0] == "å®¹é‡")
             {
                 pofdorm->information.capacity = splitColon[1];
             }
-            else if (splitColon[0] == "Â¥³¤")
+            else if (splitColon[0] == "æ¥¼é•¿")
             {
                 pofdorm->information.chief = splitColon[1];
             }
@@ -165,6 +165,7 @@ void inputinformationofdorm()
     }
 }
 
+//æ¸…ç©ºç¼“å†²åŒº
 void clean()
 {
     char c;
